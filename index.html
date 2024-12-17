@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Fraunces:opsz,wght@9..144,700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap"
+    rel="stylesheet">
+
+  <title>Product preview card component</title>
+
+  <style>
+    .montserrat-regular {
+      font-family: "Montserrat", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    .montserrat-bold {
+      font-family: "Montserrat", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .fraunces-bold {
+      font-family: "Fraunces", serif;
+      font-optical-sizing: auto;
+      font-weight: 700;
+      font-style: normal;
+      font-variation-settings:
+        "SOFT" 0,
+        "WONK" 0;
+    }
+
+
+    :root {
+      --dark-cyan: hsl(158, 36%, 37%);
+      --btn-click: hsl(158, 42%, 18%);
+      --white: hsl(0, 0%, 100%);
+      --cream: hsl(30, 38%, 92%);
+      --dark-blue: hsl(212, 21%, 14%);
+      --dark-grayish-blue: hsl(228, 12%, 48%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      font-size: 14px;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--cream);
+
+
+      .card {
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        max-width: 600px;
+        max-height: 450px;
+        border-radius: 10px;
+        background-color: var(--white);
+
+        .product-image {
+          width: 100%;
+          height: auto;
+          overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .small {
+            display: none;
+          }
+        }
+
+        .product-image img {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+          border-radius: 10px 0 0 10px;
+        }
+
+        .content {
+          padding: 2rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+
+          .product-type {
+            letter-spacing: 5px;
+            color: var(--dark-grayish-blue);
+          }
+
+          .product-name {
+            font-size: 32px;
+            line-height: 32px;
+          }
+
+          .description {
+            line-height: 23px;
+            color: var(--dark-grayish-blue);
+          }
+
+          .price {
+            display: grid;
+            grid-template-columns: 2fr 2fr;
+            gap: 1.25rem;
+            line-height: 32px;
+
+            .sale-price {
+              font-size: 32px;
+              color: var(--dark-cyan);
+            }
+
+            .original-price {
+              color: var(--dark-grayish-blue);
+            }
+          }
+
+          .btn {
+            background-color: var(--dark-cyan);
+            color: var(--white);
+            padding: .75rem;
+            border-radius: 8px;
+            transition: transform .2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .btn:hover,
+          .btn:active {
+            background-color: var(--btn-click) !important;
+            cursor: pointer;
+            transform: scale(1.02);
+          }
+
+          .btn::before {
+            content: url(images/icon-cart.svg);
+            margin-right: .5rem;
+          }
+        }
+      }
+
+
+    }
+
+    @media (max-width: 767px) {
+      .container {
+        padding: 1.25rem;
+
+        .card {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+          max-height: 100%;
+
+          img.big {
+            display: none;
+          }
+
+          img.small {
+            display: block !important;
+          }
+
+          .product-image img {
+            border-radius: 10px 10px 0 0;
+          }
+
+          .content {
+            gap: 1.25rem;
+          }
+
+          .price {
+            gap: 0 !important;
+          }
+        }
+      }
+
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <div class="container">
+      <div class="card">
+        <div class="product-image">
+          <img class="big" src="images/image-product-desktop.jpg" alt="product-image">
+          <img class="small" src="images/image-product-mobile.jpg" alt="product-image">
+        </div>
+        <div class="content">
+          <div class="product-type montserrat-regular">PERFUME</div>
+          <div class="product-name fraunces-bold">Gabrielle Essence Eau De Parfum</div>
+          <div class="description montserrat-regular">A floral, solar and voluptuous interpretation composed by Olivier
+            Polge,
+            Perfumer-Creator for the House of CHANEL.
+          </div>
+          <div class="price">
+            <div class="sale-price fraunces-bold">$149.99</div>
+            <div class="original-price"><s>$169.99</s></div>
+          </div>
+          <div class="btn montserrat-bold">
+            Add to Cart
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</body>
+
+</html>
